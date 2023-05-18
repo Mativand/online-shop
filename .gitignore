@@ -1,0 +1,52 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore build artifacts
+build/
+dist/
+
+# Ignore log files
+*.log
+
+# Ignore environment variables
+.env
+
+# Ignore development server lock files
+package-lock.json
+yarn.lock
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+
+# Ignore generated files
+.DS_Store
+*.pem
+
+# Ignore test coverage reports
+coverage/
+
+# Ignore dependency caching
+.pnp/
+.pnp.js
+
+# Ignore build cache
+.cache/
+
+# Ignore macOS directory metadata
+._*
+
+# Ignore ESLint cache
+.eslintcache
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore Yarn error log
+yarn-error.log*
+
+# Ignore Visual Studio Code workspace settings
+.code-workspace
+
+# Ignore Firebase service account credentials
+firebase-adminsdk.json

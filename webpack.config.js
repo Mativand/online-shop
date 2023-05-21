@@ -14,7 +14,7 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 module.exports = {
     mode: 'development',
     entry: {
-        main: './src/index.jsx'
+        main: './src/index.tsx'
     },
     output: {
         filename: filename('js'),
@@ -73,6 +73,11 @@ module.exports = {
             {
                 test: /\.xml$/i,
                 use: ['xml-loader'],
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
             },
             {
                 test: /\.m?js$/,

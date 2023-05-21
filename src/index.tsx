@@ -3,11 +3,12 @@ import './styles/style.css';
 import './styles/style.less';
 import './styles/style.scss';
 import {render} from "react-dom";
+import React from "react";
 
+interface Props {
 
-import React from 'react';
-
-const App = () => {
+}
+const App: React.FC<Props> = () => {
     return (
         <div>
             hello

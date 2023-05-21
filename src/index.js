@@ -1,5 +1,7 @@
 import printMe from './print.js';
-import css from './styles.css';
+import './styles/style.css';
+import './styles/style.less';
+import './styles/style.scss';
 function component() {
     const element = document.createElement('div');
     const btn = document.createElement('button');

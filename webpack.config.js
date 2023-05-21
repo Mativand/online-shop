@@ -1,8 +1,8 @@
 const path = require('path')
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const {CleanWebpackPlugin} = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -49,7 +49,7 @@ module.exports = {
             new CssMinimizerPlugin(),
         ]
     },
-    devtool: isDev ? 'source-map' : '',
+    devtool: isDev ? 'source-map' : false,
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
@@ -94,7 +94,7 @@ module.exports = {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env']
                     }
@@ -104,7 +104,7 @@ module.exports = {
                 test: /\.m?ts$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: babelOptions('@babel/preset-typescript')
                 }
             },
@@ -112,7 +112,7 @@ module.exports = {
                 test: /\.m?jsx$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: babelOptions('@babel/preset-react')
                 }
             },
@@ -121,7 +121,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: "babel-loader",
+                        loader: 'babel-loader',
                         options: babelOptions('@babel/preset-react')
                     },
                     'ts-loader'

@@ -1,15 +1,27 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
-
-console.log(isDev)
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+
+const babelOptions = preset => {
+    const opts = {
+        presets: [
+            '@babel/preset-env'
+        ]
+    }
+
+    if (preset) {
+        opts.presets.push(preset)
+    }
+
+    return opts
+}
 
 module.exports = {
     mode: 'development',
@@ -43,7 +55,10 @@ module.exports = {
             template: './src/index.html'
         }),
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        new ESLintPlugin({
+            extensions: ['js', 'jsx', 'ts', 'tsx'],
+        }),
     ],
     module: {
         rules: [
@@ -76,11 +91,6 @@ module.exports = {
                 use: ['xml-loader'],
             },
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: {
@@ -95,12 +105,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-typescript'
-                        ]
-                    }
+                    options: babelOptions('@babel/preset-typescript')
                 }
             },
             {
@@ -108,13 +113,19 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react'
-                        ]
-                    }
+                    options: babelOptions('@babel/preset-react')
                 }
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: babelOptions('@babel/preset-react')
+                    },
+                    'ts-loader'
+                ],
             }
         ],
     }

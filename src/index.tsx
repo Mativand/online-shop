@@ -5,10 +5,7 @@ import './styles/style.scss';
 import {render} from "react-dom";
 import React from "react";
 
-interface Props {
-
-}
-const App: React.FC<Props> = () => {
+const App: React.FC = () => {
     return (
         <div>
             hello

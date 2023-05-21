@@ -37,6 +37,7 @@ module.exports = {
             new CssMinimizerPlugin(),
         ]
     },
+    devtool: isDev ? 'source-map' : '',
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'

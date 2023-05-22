@@ -1,6 +1,17 @@
 import React from "react";
-const TestPage = () => {
-    return <div>Test Page</div>;
-};
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
 
-export default TestPage;
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <div>Hello world!</div>,
+    },
+]);
+export const Routing = () => {
+    return (
+        <RouterProvider router={router} />
+    );
+};

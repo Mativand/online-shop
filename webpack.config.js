@@ -26,7 +26,7 @@ const babelOptions = preset => {
 module.exports = {
     mode: 'development',
     entry: {
-        main: './src/index.tsx'
+        main: './src/app/appEntry.tsx'
     },
     output: {
         filename: filename('js'),
